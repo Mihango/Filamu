@@ -1,10 +1,14 @@
 package com.techmashinani.filamu
 
 import android.app.Application
+import timber.log.Timber
 
 class FilamuApp : Application() {
-
     override fun onCreate() {
         super.onCreate()
+
+        if(BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 }
