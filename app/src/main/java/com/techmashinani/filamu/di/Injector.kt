@@ -13,7 +13,6 @@ import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 
 object Injector {
-
     fun init(app: FilamuApp) {
 
         val appComponent = DaggerAppComponent.builder()
@@ -32,7 +31,6 @@ object Injector {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 handleActivity(activity)
             }
-
         })
     }
 
