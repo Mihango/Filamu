@@ -1,3 +1,3 @@
 package com.techmashinani.filamu.model
 
-data class Movie(val id: Long, val name: String)
+data class Movie(val id: Long, val overview: String)

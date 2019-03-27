@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.techmashinani.filamu.model.Movie
+import timber.log.Timber
 
 class MovieViewHolder private constructor(private val view: View, private val listener: (Movie) -> Unit) : RecyclerView.ViewHolder(view) {
 
     fun initView(movie: Movie) {
-
+        Timber.e("Movie ${movie.overview}")
     }
 
     companion object {

@@ -6,17 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.techmashinani.filamu.R
+import com.techmashinani.filamu.di.Injectable
 import com.techmashinani.filamu.model.Movie
 import com.techmashinani.filamu.ui.adapters.LatestMoviesAdapter
 import com.techmashinani.filamu.utils.toast
 import com.techmashinani.filamu.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.main_fragment.*
+import javax.inject.Inject
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), Injectable {
 
+    @Inject lateinit var mFactory: ViewModelProvider.Factory
     val latestAdapter: LatestMoviesAdapter by lazy { LatestMoviesAdapter {movie -> actOnMovie(movie)} }
 
     companion object {
@@ -34,7 +37,8 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, mFactory).get(MainViewModel::class.java)
+        loadLatestMovies()
 
         recycler_latest_movie.apply {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
@@ -42,7 +46,10 @@ class MainFragment : Fragment() {
     }
 
     private fun actOnMovie(movie: Movie) {
-        "${movie.name} is Movie no ${movie.id}".toast(activity!!.applicationContext)
+        "${movie.overview} is Movie no ${movie.id}".toast(activity!!.applicationContext)
     }
 
+    private fun loadLatestMovies() {
+        viewModel.getUpcomingMovies()
+    }
 }

@@ -3,11 +3,12 @@ package com.techmashinani.filamu.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.techmashinani.filamu.api.AuthInterceptor
 import com.techmashinani.filamu.api.MovieApiService
 import com.techmashinani.filamu.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
+import okhttp3.Authenticator
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,6 +35,7 @@ class NetworkModule {
     @Provides
     fun provideOkhttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor())
             .addInterceptor(loggingInterceptor)
             .callTimeout(60,TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)

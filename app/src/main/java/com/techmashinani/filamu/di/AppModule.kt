@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Named
 
-@Module
+@Module(includes = [NetworkModule::class, ViewModelsModule::class])
 class AppModule {
 
     @Named("AppName")
