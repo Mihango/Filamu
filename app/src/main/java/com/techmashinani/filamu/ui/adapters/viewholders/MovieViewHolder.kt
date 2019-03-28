@@ -22,7 +22,6 @@ class MovieViewHolder private constructor(private val view: View, private val li
             .placeholder(R.drawable.ic_movie)
             .centerCrop()
             .into(view.image_movie)
-
     }
 
     companion object {
