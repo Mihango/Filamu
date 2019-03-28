@@ -1,6 +1,7 @@
 package com.techmashinani.filamu.api
 
 import com.techmashinani.filamu.model.Movie
+import com.techmashinani.filamu.model.response.ResultResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
@@ -10,5 +11,5 @@ interface MovieApiService {
     fun getLatestMovies(): Deferred<Movie>
 
     @GET("movie/upcoming")
-    fun getUpcomingMovies(): Deferred<List<Movie>>
+    fun getUpcomingMovies(): Deferred<ResultResponse<Movie>>
 }

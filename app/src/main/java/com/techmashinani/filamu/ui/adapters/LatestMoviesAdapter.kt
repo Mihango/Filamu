@@ -17,5 +17,4 @@ class LatestMoviesAdapter(private val listener: (Movie) -> Unit) : ListAdapter<M
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.initView(getItem(position))
     }
-
 }
