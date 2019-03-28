@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.techmashinani.filamu.R
@@ -51,5 +52,15 @@ class MainFragment : Fragment(), Injectable {
 
     private fun loadLatestMovies() {
         viewModel.getUpcomingMovies()
+    }
+
+    private fun observeViewModel() {
+        viewModel.isLoading.observe(this, Observer { loading ->
+                if(loading) {
+
+                } else {
+
+                }
+        })
     }
 }
