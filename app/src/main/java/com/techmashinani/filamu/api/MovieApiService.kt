@@ -12,4 +12,10 @@ interface MovieApiService {
 
     @GET("movie/upcoming")
     fun getUpcomingMovies(): Deferred<ResultResponse<Movie>>
+
+    @GET("")
+    fun getBestSeries(): Deferred<ResultResponse<Movie>>
+
+    @GET("")
+    fun getBestMovies(): Deferred<ResultResponse<Movie>>
 }
