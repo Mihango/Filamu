@@ -3,37 +3,39 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav_graph"
-            app:startDestination="@id/main_fragment_dest">
-
-    <fragment android:id="@+id/main_fragment_dest"
+            app:startDestination="@id/mainFragment">
+    <fragment
+            android:id="@+id/mainFragment"
             android:name="com.techmashinani.filamu.ui.fragments.MainFragment"
             android:label="main_fragment"
             tools:layout="@layout/main_fragment">
         <action
-                android:id="@+id/action_main_fragment_dest_to_listing_fragment_dest"
-                app:destination="@id/listing_fragment_dest"/>
-        <action
-                android:id="@+id/action_main_fragment_dest_to_movie_details_fragment_dest"
-                app:destination="@id/movie_details_fragment_dest"/>
+                android:id="@+id/action_mainFragment_to_movieDetailsFragment"
+                app:destination="@id/movieDetailsFragment"/>
     </fragment>
 
-    <fragment android:id="@+id/actor_details_fragment_dest"
-            android:name="com.techmashinani.filamu.ui.fragments.ActorDetailFragment"
-            android:label="actors_fragment"
-            tools:layout="@layout/fragment_actor_detail"/>
-
-    <fragment android:id="@+id/listing_fragment_dest">
-        <action
-                android:id="@+id/action_listing_fragment_dest_to_movie_details_fragment_dest"
-                app:destination="@id/movie_details_fragment_dest"/>
-    </fragment>
     <fragment
-            android:id="@+id/movie_details_fragment_dest"
+            android:id="@+id/movieDetailsFragment"
             android:name="com.techmashinani.filamu.ui.fragments.MovieDetailsFragment"
             android:label="fragment_movie_details"
             tools:layout="@layout/fragment_movie_details">
+
         <action
-                android:id="@+id/action_movie_details_fragment_dest_to_actor_details_fragment_dest"
-                app:destination="@id/actor_details_fragment_dest"/>
+                android:id="@+id/action_movieDetailsFragment_to_actorDetailFragment"
+                app:destination="@id/actorDetailFragment"/>
+
+        <argument android:name="movie"
+                app:argType="com.techmashinani.filamu.model.Movie"/>
+
+    </fragment>
+
+    <fragment
+            android:id="@+id/actorDetailFragment"
+            android:name="com.techmashinani.filamu.ui.fragments.ActorDetailFragment"
+            android:label="fragment_actor_detail"
+            tools:layout="@layout/fragment_actor_detail">
+
+        <argument android:name="actorId"
+                app:argType="long"/>
     </fragment>
 </navigation>

@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        val host = NavHostFragment.create(R.navigation.nav_graph)
-        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, host).setPrimaryNavigationFragment(host).commit()
+        // val host = NavHostFragment.create(R.navigation.nav_graph)
+        // supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, host).setPrimaryNavigationFragment(host).commit()
     }
 
     fun showProgress(show: Boolean) {

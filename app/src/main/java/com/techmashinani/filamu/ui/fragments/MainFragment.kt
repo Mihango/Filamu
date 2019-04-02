@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.techmashinani.filamu.R
 import com.techmashinani.filamu.di.Injectable
@@ -48,7 +49,10 @@ class MainFragment : Fragment(), Injectable {
     }
 
     private fun actOnMovie(movie: Movie) {
-        "${movie.overview} is Movie no ${movie.id}".toast(activity!!.applicationContext)
+        // "${movie.overview} is Movie no ${movie.id}".toast(activity!!.applicationContext)
+        val action = MainFragmentDirections.actionMainFragmentToMovieDetailsFragment(movie)
+        findNavController().navigate(action)
+
     }
 
     private fun loadLatestMovies() {
