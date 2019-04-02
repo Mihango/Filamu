@@ -14,6 +14,7 @@ import com.techmashinani.filamu.di.Injectable
 import com.techmashinani.filamu.model.Movie
 import com.techmashinani.filamu.ui.activities.MainActivity
 import com.techmashinani.filamu.ui.adapters.LatestMoviesAdapter
+import com.techmashinani.filamu.ui.adapters.MovieCategoryAdapter
 import com.techmashinani.filamu.utils.toast
 import com.techmashinani.filamu.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -23,7 +24,7 @@ import javax.inject.Inject
 class MainFragment : Fragment(), Injectable {
 
     @Inject lateinit var mFactory: ViewModelProvider.Factory
-    private val upcomingAdapter: LatestMoviesAdapter by lazy { LatestMoviesAdapter {movie -> actOnMovie(movie)} }
+    private val categoryAdapter: MovieCategoryAdapter by lazy { MovieCategoryAdapter(viewLifecycleOwner) {movie -> actOnMovie(movie)} }
 
     private lateinit var viewModel: MainViewModel
 
@@ -41,8 +42,8 @@ class MainFragment : Fragment(), Injectable {
         observeViewModel()
 
         recycler_latest_movie.apply {
-            this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
-            this.adapter = upcomingAdapter
+            this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            this.adapter = categoryAdapter
         }
     }
 
@@ -51,7 +52,7 @@ class MainFragment : Fragment(), Injectable {
     }
 
     private fun loadLatestMovies() {
-        viewModel.getUpcomingMovies()
+         viewModel.getUpcomingMovies()
     }
 
     private fun observeViewModel() {
@@ -60,15 +61,13 @@ class MainFragment : Fragment(), Injectable {
             (activity as MainActivity).showProgress(loading)
         })
 
-        // get upcoming state
-        viewModel.upcomingLiveData.observe(this, Observer {
-            Timber.e("Data size ${it.size}")
-            upcomingAdapter.submitList(it)
-        })
-
         // listen when error occurs
         viewModel.errorLiveData.observe(this, Observer {
             "Error - $it".toast(context!!.applicationContext)
+        })
+
+        viewModel.categoryListLiveData.observe(this, Observer {
+            categoryAdapter.submitList(it)
         })
     }
 }
