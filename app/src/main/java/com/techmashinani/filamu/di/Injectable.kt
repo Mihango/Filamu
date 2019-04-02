@@ -1,4 +1,3 @@
 package com.techmashinani.filamu.di
 
-interface Injectable {
-}
+interface Injectable

@@ -8,7 +8,7 @@
         tools:context=".ui.fragments.MovieDetailsFragment">
 
     <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image_poster"
             android:layout_width="408dp"
             android:layout_height="300dp"
             tools:src="@tools:sample/avatars"
@@ -19,14 +19,15 @@
             android:contentDescription="TODO"/>
 
     <TextView
-            android:id="@+id/textView"
+            android:id="@+id/text_movie_name"
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/image_poster"
+            app:layout_constraintTop_toTopOf="@+id/image_poster"
+            app:layout_constraintEnd_toEndOf="@+id/image_poster"
+            app:layout_constraintStart_toStartOf="@+id/image_poster"
             android:textSize="24sp"
             android:textStyle="bold"/>
 
@@ -35,7 +36,7 @@
             android:text="Overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/image_poster"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
@@ -43,14 +44,16 @@
             android:textStyle="bold"/>
 
     <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_movie_desc"
             android:text="@string/sample_desc"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_actors"
@@ -59,7 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/text_movie_desc"
             android:layout_marginTop="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

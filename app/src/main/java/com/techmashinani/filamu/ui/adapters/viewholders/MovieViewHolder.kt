@@ -24,6 +24,7 @@ class MovieViewHolder private constructor(private val view: View, private val li
             .into(view.image_movie)
     }
 
+
     companion object {
         @JvmStatic fun create(parent: ViewGroup, resource: Int, listener: (Movie) -> Unit): MovieViewHolder =
             MovieViewHolder(LayoutInflater.from(parent.context).inflate(resource,parent, false), listener)
