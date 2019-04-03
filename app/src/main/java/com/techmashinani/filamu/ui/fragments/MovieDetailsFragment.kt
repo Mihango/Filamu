@@ -46,7 +46,6 @@ class MovieDetailsFragment : Fragment(), Injectable {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        Timber.d("OnActivityCreated called >>>>>>>>>>>>>>>>>")
         val w = (activity as MainActivity).window
         w.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -62,7 +61,6 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("OnViewCreated called >>>>>>>>>>>>>>>>>")
         val bundle = MovieDetailsFragmentArgs.fromBundle(arguments!!)
         viewModel = ViewModelProviders.of(this, mFactory).get(MovieDetailViewModel::class.java)
         viewModel.init(bundle.movie)

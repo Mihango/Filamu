@@ -1,6 +1,7 @@
 package com.techmashinani.filamu.api
 
 import com.techmashinani.filamu.model.Movie
+import com.techmashinani.filamu.model.Person
 import com.techmashinani.filamu.model.response.CastResponse
 import com.techmashinani.filamu.model.response.ResultResponse
 import kotlinx.coroutines.Deferred
@@ -25,4 +26,9 @@ interface MovieApiService {
     fun getMovieAsync(
         @Path("movie_id") id: Long
     ): Deferred<CastResponse>
+
+    @GET("person/{person_id}")
+    fun getPerson(
+        @Path("person_id") id: Long
+    ): Deferred<Person>
 }

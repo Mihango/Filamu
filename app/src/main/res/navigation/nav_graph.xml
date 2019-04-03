@@ -35,7 +35,7 @@
             android:label="fragment_actor_detail"
             tools:layout="@layout/fragment_actor_detail">
 
-        <argument android:name="actorId"
-                app:argType="long"/>
+        <argument android:name="actor"
+                app:argType="com.techmashinani.filamu.model.Actor"/>
     </fragment>
 </navigation>
