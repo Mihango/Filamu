@@ -15,9 +15,11 @@ import android.view.WindowManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.techmashinani.filamu.R
 import com.techmashinani.filamu.di.Injectable
+import com.techmashinani.filamu.model.Actor
 import com.techmashinani.filamu.ui.activities.MainActivity
 import com.techmashinani.filamu.ui.adapters.ActorAdapter
 import com.techmashinani.filamu.viewmodels.MovieDetailViewModel
@@ -33,7 +35,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
     @Inject lateinit var mFactory: ViewModelProvider.Factory
     private lateinit var viewModel: MovieDetailViewModel
 
-    private val actorAdapter: ActorAdapter by lazy { ActorAdapter() }
+    private val actorAdapter: ActorAdapter by lazy { ActorAdapter {actor -> showPersonDetails(actor)} }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -83,5 +85,10 @@ class MovieDetailsFragment : Fragment(), Injectable {
             // get actors
             actorAdapter.submitList(it.cast)
         })
+    }
+
+    private fun showPersonDetails(actor: Actor) {
+        val action = MovieDetailsFragmentDirections.actionMovieDetailsFragmentToActorDetailFragment(actor)
+        findNavController().navigate(action)
     }
 }

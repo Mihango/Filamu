@@ -11,7 +11,7 @@ import com.techmashinani.filamu.model.Actor
 import com.techmashinani.filamu.utils.POSTER_URL
 import kotlinx.android.synthetic.main.item_actor.view.*
 
-class ActorViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class ActorViewHolder(val view: View, private val listener: (Actor) -> Unit) : RecyclerView.ViewHolder(view) {
 
     fun bind(actor: Actor) {
        if(actor.profile_path != null) {
@@ -22,9 +22,11 @@ class ActorViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
                .centerCrop()
                .into(view.image_actor)
        }
+
+        view.setOnClickListener { listener(actor) }
     }
 
     companion object {
-        fun create(parent: ViewGroup): ActorViewHolder = ActorViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_actor, parent, false))
+        fun create(parent: ViewGroup, listener: (Actor) -> Unit): ActorViewHolder = ActorViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_actor, parent, false), listener)
     }
 }
